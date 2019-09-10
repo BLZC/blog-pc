@@ -1,15 +1,15 @@
 <template>
   <div class="home">
-
-    <Head></Head>
-    <Content></Content>
+    <Pead></Pead>
+    <div class="main">
+      <div class="top_block"></div>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import Head from './layout/header'
-import Content from './layout/content'
-// import Foot from './layout/footer'
+import Pead from './layout/header'
 export default {
   name: 'home',
   data () {
@@ -18,9 +18,7 @@ export default {
     };
   },
   components: {
-    Head,
-    Content,
-    // Foot
+    Pead
   },
   methods: {
 
@@ -32,5 +30,12 @@ export default {
   height: 100vh;
   width: 1200px;
   margin: 0 auto;
+  .main {
+    background-color: #fafafa;
+    .top_block {
+      width: 100%;
+      height: 80px;
+    }
+  }
 }
 </style>

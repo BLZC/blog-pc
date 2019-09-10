@@ -15,15 +15,31 @@ export default new Router({
       path: '/',
       name: 'home',
       component: () => import('../views/Home.vue'),
+      redirect: '/index',
       children: [
         {
           path: '/index',
           name: 'index',
-          component: () => import('../views/home/index.vue')
+          component: () => import('../views/home/content.vue')
+        },
+        {
+          path: '/content',
+          name: 'content',
+          component: () => import('../views/content/content.vue')
+        },
+        {
+          path: '/editsuccess',
+          name: 'editsuccess',
+          component: () => import('../views/edit/editsuccess.vue')
         },
         //商城模块
         ...shop
       ]
+    },
+    {
+      path: '/edit',
+      name: 'edit',
+      component: () => import('../views/edit/edit')
     }
   ]
 })

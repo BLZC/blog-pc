@@ -7,6 +7,7 @@
            v-for="item in fenlei"
            :key="item.id">{{item.name}}</div>
     </div>
+    <router-link to="/content">
     <el-card class="box-card"
              v-for="item in articles"
              :key="item.id"
@@ -29,6 +30,7 @@
         </div>
       </div>
     </el-card>
+    </router-link>
   </div>
 </template>
 <script>
@@ -49,83 +51,29 @@ export default {
           name: '热榜'
         }
       ],
-      articles: [
-        {
-          id: 1,
-          title: '前端工程师如何继续保持热情',
-          author: '前端小白',
-          time: '2019/9/1',
-          fenlei: '',
-          content: '',
-          zan: '123',
-          pinglun: '23'
-        },
-        {
-          id: 2,
-          title: '前端工程师如何继续保持热情',
-          author: '前端小白',
-          time: '2019/9/1',
-          fenlei: '',
-          content: '',
-          zan: '123',
-          pinglun: '23'
-        },
-        {
-          id: 3,
-          title: '前端工程师如何继续保持热情',
-          author: '前端小白',
-          time: '2019/9/1',
-          fenlei: '',
-          content: '',
-          zan: '123',
-          pinglun: '23'
-        },
-        {
-          id: 4,
-          title: '前端工程师如何继续保持热情',
-          author: '前端小白',
-          time: '2019/9/1',
-          fenlei: '',
-          content: '',
-          zan: '123',
-          pinglun: '23'
-        },
-        {
-          id: 5,
-          title: '前端工程师如何继续保持热情',
-          author: '前端小白',
-          time: '2019/9/1',
-          fenlei: '',
-          content: '',
-          zan: '123',
-          pinglun: '23'
-        },
-        {
-          id: 6,
-          title: '前端工程师如何继续保持热情',
-          author: '前端小白',
-          time: '2019/9/1',
-          fenlei: '',
-          content: '',
-          zan: '123',
-          pinglun: '23'
-        },
-        {
-          id: 7,
-          title: '前端工程师如何继续保持热情',
-          author: '前端小白',
-          time: '2019/9/1',
-          fenlei: '',
-          content: '',
-          zan: '123',
-          pinglun: '23'
-        }
-      ]
+      articles: []
     }
+  },
+  mounted () {
+    this.getallarticles()
   },
   methods: {
     load () {
 
+    },
+    //获取文章列表
+    getallarticles () {
+      this.$post('/getallarticles', {}).then(res => {
+        if (res.status) {
+          let result = res.result
+          result.forEach(element => {
+            if (element.time) {
+              element.time = element.time.split("T")[0]
+            }
+          })
+          this.articles = result;
+        }
+      })
     }
   }
 }
