@@ -1,42 +1,37 @@
 <template>
-  <div id="content">
-    <div v-html="compiledMarkdown"></div>
+  <div>
+    <el-row class="content">
+      <el-col :span="3">
+        <content-left></content-left>
+      </el-col>
+      <el-col :span="14">
+        <content-main></content-main>
+      </el-col>
+      <el-col :span="7">
+        <content-right></content-right>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
-import marked from 'marked'
-var rendererMD = new marked.Renderer()
-marked.setOptions({
-  renderer: rendererMD,
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false
-})
+import ContentLeft from './contentleft'
+import ContentMain from './contentmain'
+import ContentRight from './contentright'
 export default {
-  name: 'App',
   data () {
     return {
-      input: ''
+
     }
   },
-  computed: {
-    compiledMarkdown () {
-      return marked(this.input, { sanitize: true })
-    }
-  },
-  mounted () {
-    this.getarticleDetail()
-  },
-  methods: {
-    getarticleDetail () {
-      this.$post('/getarticleDetail', { id: 2 }).then(res => {
-        this.input = res.result.content
-      })
-    }
+  components: {
+    ContentLeft,
+    ContentMain,
+    ContentRight
   }
 }
 </script>
+<style lang="scss" scoped>
+.content {
+  margin: 20px 0;
+}
+</style>

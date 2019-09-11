@@ -1,13 +1,13 @@
 <template>
-  <div class="content">
+  <div class="home">
     <div class="main">
       <el-row>
         <el-col :span="16">
-          <content-left></content-left>
+          <home-left></home-left>
         </el-col>
         <el-col :span="7"
                 :offset="1">
-          <content-right></content-right>
+          <home-right></home-right>
         </el-col>
       </el-row>
 
@@ -16,8 +16,8 @@
   </div>
 </template>
 <script>
-import ContentLeft from './content_left.vue'
-import ContentRight from './content_right.vue'
+import HomeLeft from './home_left.vue'
+import HomeRight from './home_right.vue'
 export default {
   data () {
     return {
@@ -25,10 +25,8 @@ export default {
     }
   },
   components: {
-    ContentLeft,
-    ContentRight
+    HomeLeft,
+    HomeRight
   }
 }
 </script>
-<style lang="scss" scoped>
-</style>

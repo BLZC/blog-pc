@@ -20,7 +20,7 @@ export default new Router({
         {
           path: '/index',
           name: 'index',
-          component: () => import('../views/home/content.vue')
+          component: () => import('../views/home/home.vue')
         },
         {
           path: '/content',

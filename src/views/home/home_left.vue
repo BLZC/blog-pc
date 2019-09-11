@@ -1,5 +1,5 @@
 <template>
-  <div class="content_left"
+  <div class="home_left"
        v-infinite-scroll="load"
        style="overflow:auto">
     <div class="fenlei">
@@ -7,7 +7,7 @@
            v-for="item in fenlei"
            :key="item.id">{{item.name}}</div>
     </div>
-    <router-link to="/content">
+
     <el-card class="box-card"
              v-for="item in articles"
              :key="item.id"
@@ -15,7 +15,9 @@
       <div slot="header"
            class="clearfix">
         <div class="top"> <span class="tp1">专栏</span>&nbsp;&nbsp;{{item.author}}&nbsp;&nbsp;&nbsp;{{item.time}}</div>
-        <span class="title">{{item.title}}</span>
+        <router-link to="/content">
+          <span class="title">{{item.title}}</span>
+        </router-link>
         <el-button style="float: right; padding: 3px 0; display:none;"
                    type="text">分享</el-button>
       </div>
@@ -30,7 +32,7 @@
         </div>
       </div>
     </el-card>
-    </router-link>
+
   </div>
 </template>
 <script>
@@ -79,7 +81,7 @@ export default {
 }
 </script>
 <style lang="scss">
-.content_left {
+.home_left {
   background-color: #fff;
   .fenlei {
     width: 100%;

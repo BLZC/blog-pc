@@ -1,5 +1,5 @@
-<template name="component-name">
-  <div class="content_right">
+<template>
+  <div class="home_right">
     <div class="author_list">
       <div class="top_title">
         🎖️作者榜
@@ -13,7 +13,7 @@ export default {
 }
 </script>
 <style lang="scss">
-.content_right {
+.home_right {
   background-color: #fff;
   position: fixed;
   .author_list {

@@ -77,6 +77,14 @@ th {
   padding: 0;
   text-align: left;
 }
+
+a {
+  text-decoration: none;
+}
+
+.router-link-active {
+  text-decoration: none;
+}
 .lzc-flex {
   display: flex;
   display: -webkit-flex;
