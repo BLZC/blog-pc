@@ -56,8 +56,8 @@ export default {
 .aboutAuthor {
   text-align: left;
   background-color: #fff;
-  width: 60%;
-  margin: 0 20%;
+  width: 70%;
+  margin: 0 25% 0 5%;
   padding: 10px;
   .aboutt {
     padding: 10px 0;

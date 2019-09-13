@@ -1,31 +1,32 @@
 <template>
-  <el-dialog title="注册"
+  <el-dialog title="注 册"
              append-to-body
              width="25%"
              center
+             destroy-on-close
              :close-on-click-modal='false'
-             :before-close='Close'
-             :visible.sync="show">
+             :visible.sync="dialog.rgshow">
     <el-form :model="form">
       <el-form-item>
-        <el-input size="small"
+        <el-input size="medium"
                   v-model="form.username"
                   placeholder="请输入用户名"
                   clearable
                   autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input size="small"
+        <el-input size="medium"
                   v-model="form.account"
                   placeholder="请输入手机号"
                   clearable
                   autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input size="small"
+        <el-input size="medium"
                   v-model="form.password"
                   placeholder="请输入密码 ( 不少于6位 ) "
                   clearable
+                  show-password
                   autocomplete="off"></el-input>
       </el-form-item>
     </el-form>
@@ -58,7 +59,6 @@
 
 </template>
 <script>
-import { LZCMessage } from '../common/index'
 export default {
   data () {
     return {
@@ -70,80 +70,34 @@ export default {
     }
   },
   props: {
-  },
-  computed: {
-    show () {
-      return this.$store.state.home.rgshow
+    dialog: {
+      type: Object
     }
   },
   methods: {
-
+    //注册
     Register () {
       if (!this.form.username) {
-        LZCMessage('请输入用户名', 'error')
+        this.$LZCMessage('请输入用户名', 'error')
       } else if (!this.form.account) {
-        LZCMessage('请输入账号', 'error')
+        this.$LZCMessage('请输入账号', 'error')
       }
       else {
         this.$post('/register', { username: this.form.username, account: this.form.account, password: this.form.password }).then(res => {
           if (res.status) {
-            this.$message({
-              message: '注册成功！',
-              type: 'success'
-            })
-            this.Close()
+            this.$LZCMessage('注册成功!', 'success')
+            this.dialog.rgshow = false
           }
           else {
-            this.$message({
-              message: res.message,
-              type: 'error'
-            })
+            this.$LZCMessage(res.message, 'error')
           }
         })
       }
     },
-    Close () {
-      this.$store.commit('changeRgshow', false)
-    },
     Jumplogin () {
-      this.$store.commit('changeRgshow', false)
-      this.$store.commit('changeLgshow', true)
+      this.dialog.rgshow = false
+      this.dialog.lgshow = true
     }
   }
 }
 </script>
-<style lang="scss">
-.el-dialog--center .el-dialog__body {
-  padding: 10px 25px;
-  .el-form-item {
-    margin-bottom: 5px;
-  }
-}
-
-.btn-qd {
-  width: 100%;
-  background-color: #007fff;
-  font-size: 15px;
-}
-.ft1 {
-  cursor: pointer;
-  margin: 10px 0;
-  text-align: center;
-  color: #007fff;
-}
-.ft2 {
-  margin: 0;
-}
-.ft3 {
-  margin: 10px;
-  .el-col-8 {
-    text-align: center;
-  }
-  .tp_img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #f4f8fb;
-  }
-}
-</style>

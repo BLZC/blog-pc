@@ -1,28 +1,29 @@
 <template>
-  <el-dialog title="登录"
+  <el-dialog title="登  录"
              append-to-body
              width="25%"
              center
+             destroy-on-close
              :close-on-click-modal='false'
-             :before-close='Close'
-             :visible.sync="show">
+             :visible.sync="dialog.lgshow">
     <el-form :model="form">
       <el-form-item required>
-        <el-input size="small"
+        <el-input size="medium"
                   v-model="form.account"
                   placeholder="请输入手机号或邮箱"
                   clearable
                   autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input size="small"
+        <el-input size="medium"
                   v-model="form.password"
                   placeholder="请输入密码"
+                  show-password
                   clearable
                   autocomplete="off"></el-input>
       </el-form-item>
     </el-form>
-    <el-button size="small"
+    <el-button size="medium"
                type="primary"
                class="btn-qd"
                @click="login">登 录</el-button>
@@ -71,60 +72,50 @@ export default {
     }
   },
   props: {
-  },
-  computed: {
-    show () {
-      return this.$store.state.home.lgshow
+    dialog: {
+      type: Object
     }
   },
   methods: {
     login () {
       if (!this.form.account) {
-        this.$message({
-          message: '账号不能为空',
-          type: 'error'
-        })
+        this.$LZCMessage('账号不能为空', 'error')
       }
       else if (!this.form.password) {
-        this.$message({
-          message: '密码不能为空',
-          type: 'error'
-        })
+        this.$LZCMessage('密码不能为空', 'error')
       } else {
         this.$post('/login', { account: this.form.account, password: this.form.password }).then(res => {
           if (res.status) {
-            this.$message({
-              message: '登录成功',
-              type: 'success'
-            });
-            this.Close()
+            this.$LZCMessage('登录成功', 'success')
             localStorage.setItem('user', res.account)
             this.$store.commit('changeLogin', true)
+            this.dialog.lgshow = false
           }
           else {
-            this.$message({
-              message: '登录失败，请确认您的账号密码是否正确',
-              type: 'error'
-            })
+            this.$LZCMessage('登录失败，请确认您的账号密码是否正确', 'error')
           }
         })
       }
     },
-    Close () {
-      this.$store.commit('changeLgshow', false)
-    },
     Jumpregister () {
-      this.$store.commit('changeLgshow', false)
-      this.$store.commit('changeRgshow', true)
+      this.dialog.lgshow = false
+      this.dialog.rgshow = true
     }
   }
 }
 </script>
 <style lang="scss">
+/**
+* 此处样式影响register组件样式
+*/
+.el-dialog__title {
+  font-weight: 550;
+  font-size: 20px;
+}
 .el-dialog--center .el-dialog__body {
   padding: 10px 25px;
   .el-form-item {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
   }
 }
 .btn-qd {
@@ -133,7 +124,10 @@ export default {
   font-size: 15px;
 }
 .ft1 {
+  cursor: pointer;
   margin: 10px 0;
+  color: #007fff;
+  text-align: center;
   .ft1_l {
     cursor: pointer;
     display: inline-block;

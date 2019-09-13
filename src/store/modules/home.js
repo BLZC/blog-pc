@@ -3,8 +3,6 @@ export default {
     show: true,
     isCollapse: false,
     islogin: false /* 用户是否登录 */,
-    lgshow: false /* 登录框状态 */,
-    rgshow: false /* 注册框状态 */,
     icon: '/images/hide.png',
     text: 'Api管理系统',
     tipText: '收缩菜单',
@@ -70,14 +68,6 @@ export default {
     //登录状态改变
     changeLogin(state, value) {
       state.islogin = value
-    },
-    //登录框状态改变
-    changeLgshow(state, value) {
-      state.lgshow = value
-    },
-    //注册框状态改变
-    changeRgshow(state, value) {
-      state.rgshow = value
     }
   },
   actions: {}

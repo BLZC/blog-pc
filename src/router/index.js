@@ -28,6 +28,11 @@ export default new Router({
           component: () => import('../views/content/content.vue')
         },
         {
+          path: '/about',
+          name: 'about',
+          component: () => import('../views/about/index.vue')
+        },
+        {
           path: '/editsuccess',
           name: 'editsuccess',
           component: () => import('../views/edit/editsuccess.vue')

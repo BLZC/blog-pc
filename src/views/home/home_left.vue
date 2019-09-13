@@ -15,9 +15,8 @@
       <div slot="header"
            class="clearfix">
         <div class="top"> <span class="tp1">专栏</span>&nbsp;&nbsp;{{item.author}}&nbsp;&nbsp;&nbsp;{{item.time}}</div>
-        <router-link to="/content">
-          <span class="title">{{item.title}}</span>
-        </router-link>
+        <span @click="Jumpdetail(item.id)"
+              class="title">{{item.title}}</span>
         <el-button style="float: right; padding: 3px 0; display:none;"
                    type="text">分享</el-button>
       </div>
@@ -56,8 +55,11 @@ export default {
       articles: []
     }
   },
-  mounted () {
+  created () {
     this.getallarticles()
+  },
+  watch: {
+    '$route': 'getallarticles'
   },
   methods: {
     load () {
@@ -65,7 +67,8 @@ export default {
     },
     //获取文章列表
     getallarticles () {
-      this.$post('/getallarticles', {}).then(res => {
+      let _id = this.$route.query.id || 0
+      this.$post('/getallarticles', { classificationId: _id }).then(res => {
         if (res.status) {
           let result = res.result
           result.forEach(element => {
@@ -76,6 +79,21 @@ export default {
           this.articles = result;
         }
       })
+    },
+    //跳到文章详情页
+    Jumpdetail (id) {
+      /**
+       * 不适合使用vuex进行传参
+       */
+      // this.$store.commit('getContentId', id)
+      this.$router.push(
+        {
+          path: '/content',
+          query: {
+            contentId: id
+          }
+        }
+      )
     }
   }
 }

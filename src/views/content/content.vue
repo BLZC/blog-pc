@@ -4,7 +4,8 @@
       <el-col :span="3">
         <content-left></content-left>
       </el-col>
-      <el-col :span="14">
+      <el-col :span="14"
+              :offset="3">
         <content-main></content-main>
       </el-col>
       <el-col :span="7">
@@ -33,5 +34,6 @@ export default {
 <style lang="scss" scoped>
 .content {
   margin: 20px 0;
+  background-color: #fafafa;
 }
 </style>

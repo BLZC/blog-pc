@@ -19,12 +19,15 @@
         <el-col :span="6">
           <el-button type="success"
                      plain
-                     size="small">关注</el-button>
+                     @click="Attention"
+                     size="small">{{isattention ? '已关注' : '关注'}}</el-button>
         </el-col>
       </el-row>
     </div>
     <div class="contentmain_main">
-      <div v-html="compiledMarkdown"></div>
+      <span class="title">{{title}}</span>
+      <div class="markdown_content"
+           v-html="compiledMarkdown"></div>
     </div>
 
   </div>
@@ -46,7 +49,9 @@ export default {
   name: 'App',
   data () {
     return {
-      input: ''
+      title: '', /* 文章题目 */
+      input: '',  /* 文章内容 */
+      isattention: false /* 关注 */
     }
   },
   computed: {
@@ -58,15 +63,23 @@ export default {
     this.getarticleDetail()
   },
   methods: {
+    //获取文章信息
     getarticleDetail () {
-      this.$post('/getarticleDetail', { id: 2 }).then(res => {
+      // let _id = this.$store.state.content.contentId
+      let _id = this.$route.query.contentId
+      this.$post('/getarticleDetail', { id: _id }).then(res => {
+        this.title = res.result.title
         this.input = res.result.content
       })
+    },
+    //点关注
+    Attention () {
+      this.isattention = !this.isattention
     }
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 .contentmain {
   background-color: #fff;
   .contentmain_head {
@@ -93,8 +106,35 @@ export default {
     }
   }
   .contentmain_main {
-    text-align: center;
-    height: 500px;
+    text-align: left;
+    padding: 20px;
+    line-height: 40px;
+    .title {
+      font-size: 22px;
+      font-weight: 550;
+    }
+    .markdown_content {
+      h1 {
+        font-size: 20px;
+        font-weight: 550;
+      }
+      h2 {
+        font-size: 18px;
+        font-weight: 550;
+      }
+      h3 {
+        font-size: 16px;
+        font-weight: 550;
+      }
+      ol {
+        padding-left: 20px;
+      }
+      pre {
+        background-color: #fafafa;
+        padding: 10px;
+        line-height: 20px;
+      }
+    }
   }
 }
 </style>

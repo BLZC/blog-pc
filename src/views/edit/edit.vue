@@ -1,10 +1,22 @@
 <template>
   <div class="markdown-edit">
     <el-row class="mark-header">
-      <el-col :span="14">
+      <el-col :span="10">
         <el-input size="medium"
                   placeholder="请输入标题。。。"
                   v-model="title"></el-input>
+      </el-col>
+      <el-col :span="4"
+              :offset="1">
+        <el-select v-model="belong"
+                   clearable
+                   placeholder="请选择分类">
+          <el-option v-for="item in classification"
+                     :key="item.id"
+                     :label="item.name"
+                     :value="item.id">
+          </el-option>
+        </el-select>
       </el-col>
       <el-col :span="2"
               :offset="4">
@@ -29,32 +41,42 @@
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 import { setTimeout } from 'timers';
+import { LZCMessage } from '../../common'
 export default {
   name: "Create",
   components: { mavonEditor },
   data () {
     return {
       title: '' /* 文章标题 */,
+      belong: '' /* 文章分类 */,
       doc: '' /* 文章内容 */,
-      hideTimeout: 1000
+      hideTimeout: 1000,
+      classification: [] //所有分类
     }
   },
+  mounted () {
+    this.getclassification()
+  },
   methods: {
+    //获取文章分类
+    getclassification () {
+      this.$post('/getclassification', {}).then(res => {
+        this.classification = res.result
+      })
+    },
+    //发布
     Release () {
-      if (this.title) {
+      if (this.title && this.belong) {
         let data = {
           title: this.title,
           author: localStorage.getItem('user'),
           time: new Date().toLocaleDateString(),
-          belong: 2,
+          belong: this.belong,
           content: this.doc
         }
         this.$post('/addarticle', data).then(res => {
           if (res.status) {
-            this.$message({
-              type: 'success',
-              message: '发表成功'
-            })
+            LZCMessage('发表成功', 'success')
             setTimeout(() => {
               this.$router.push('/editsuccess')
             }, 1000)
@@ -62,10 +84,7 @@ export default {
           }
         })
       } else {
-        this.$message({
-          type: 'error',
-          message: '题目不能为空'
-        })
+        LZCMessage('题目和分类不能为空', 'error')
       }
 
     },
@@ -79,6 +98,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .markdown-edit {
+  padding: 0 10px;
   .mark-header {
     height: 65px;
     line-height: 65px;

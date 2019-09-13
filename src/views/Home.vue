@@ -28,10 +28,10 @@ export default {
 <style scoped lang="scss">
 .home {
   height: 100vh;
-  width: 1200px;
-  margin: 0 auto;
+  width: 100%;
   .main {
-    background-color: #fafafa;
+    width: 1200px;
+    margin: 0 auto;
     .top_block {
       width: 100%;
       height: 80px;
