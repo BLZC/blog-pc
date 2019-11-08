@@ -7,7 +7,7 @@
         <el-col :span="2"
                 class="item hidden-xs-only">
           <img @click="jump(3)"
-               src="https://b-gold-cdn.xitu.io/v3/static/img/logo.a7995ad.svg" />
+               src="../../../public/images/logo1.gif" />
         </el-col>
         <el-col :span="1"
                 :xs="4"
@@ -37,13 +37,13 @@
                     active-text-color="#007fff"
                     mode="horizontal">
               <el-menu-item index="1"
-                            @click="jump(4,1)">JS深究</el-menu-item>
+                            @click="jump(4,1)">每日一记</el-menu-item>
               <el-menu-item index="2"
-                            @click="jump(4,2)">再探CSS</el-menu-item>
+                            @click="jump(4,2)">读书笔记</el-menu-item>
               <el-menu-item index="3"
-                            @click="jump(4,3)">框架踩坑</el-menu-item>
+                            @click="jump(4,3)">坑点记录</el-menu-item>
               <el-menu-item index="4"
-                            @click="jump(4,4)">深入源码</el-menu-item>
+                            @click="jump(4,4)">技术社区</el-menu-item>
               <el-submenu index="5">
                 <template slot="title">个人博客</template>
                 <el-menu-item index="5-1">
@@ -78,7 +78,7 @@
                   class="message">
             <el-badge :value="12"
                       class="item">
-              <i class="iconfont iconxiaoxi"></i>
+              <i @click="linkTo('/message')" class="iconfont iconxiaoxi"></i>
             </el-badge>
           </el-col>
           <el-col :span="2"
@@ -97,6 +97,7 @@
               </span>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="a"><i class="iconfont iconwode"></i>我的主页</el-dropdown-item>
+                <el-dropdown-item command="c"><i class="iconfont iconxiaoxi"></i>我的消息</el-dropdown-item>
                 <el-dropdown-item command="b"><i class="iconfont icontuichu"></i>退出</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
@@ -180,7 +181,15 @@ export default {
     },
     //写文章
     Jumpedit () {
-      this.$router.push('/edit')
+      if(this.islogin){
+        this.linkTo('/edit')
+      } else {
+        this.$LZCMessage('请先登录', 'error')
+      }
+    },
+    // 路由跳转
+    linkTo(url){
+      this.$router.push(url)
     },
     //登录
     login () {
@@ -194,10 +203,13 @@ export default {
     handleCommand (command) {
       switch (command) {
         case 'a':
-          this.$router.push('/about')
+          this.linkTo('/about')
           break;
         case 'b':
           this.Logout();
+          break;
+        case 'c':
+          this.linkTo('/message');
           break;
       }
     },
@@ -239,8 +251,10 @@ export default {
       line-height: 60px;
       cursor: pointer;
       img {
-        height: 33px;
-        margin-top: 13px;
+        height: 50px;
+        width: 50px;
+        border-radius: 30%;
+        margin-top: 5px;
       }
     }
     .el-menu-demo {

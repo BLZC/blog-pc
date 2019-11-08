@@ -37,6 +37,11 @@ export default new Router({
           name: 'editsuccess',
           component: () => import('../views/edit/editsuccess.vue')
         },
+        {
+          path: '/message',
+          name: 'message',
+          component: () => import('../views/message')
+        },
         //商城模块
         ...shop
       ]

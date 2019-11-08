@@ -2,32 +2,30 @@
   <div class="home_left"
        v-infinite-scroll="load"
        style="overflow:auto">
-    <div class="fenlei">
-      <div class="flitem"
-           v-for="item in fenlei"
-           :key="item.id">{{item.name}}</div>
-    </div>
-
+       
     <el-card class="box-card"
              v-for="item in articles"
              :key="item.id"
              shadow="none">
       <div slot="header"
            class="clearfix">
-        <div class="top"> <span class="tp1">专栏</span>&nbsp;&nbsp;<span class="author">{{item.author}}&nbsp;&nbsp;&nbsp;{{item.time}}</span></div>
+        <div class="top"> 
+          <!--<span class="tp1">专栏</span>&nbsp;&nbsp;-->
+          <span class="author">{{item.author}}&nbsp;&nbsp;&nbsp;{{item.time}}</span>
+        </div>
         <span @click="Jumpdetail(item.id)"
               class="title">{{item.title}}</span>
-        <el-button style="float: right; padding: 3px 0; display:none;"
-                   type="text">分享</el-button>
+        <!-- <el-button style="float: right; padding: 3px 0; display:none;"
+                   type="text">分享</el-button> -->
       </div>
       <div class="text item">
         <div class="minitem">
           <i class="iconfont icondianzan"></i>
-          {{item.zan}}
+          {{item.zan || 0}}
         </div>
         <div class="minitem">
           <i class="iconfont iconpinglun"></i>
-          {{item.pinglun}}
+          {{item.pinglun || 0}}
         </div>
       </div>
     </el-card>
@@ -138,15 +136,15 @@ export default {
       border-bottom: 0 solid #eee !important;
       padding: 20px 20px 5px 20px;
       .top {
-        font-size: 13px;
+        font-size: 14px;
         color: #666;
         padding: 0 0 10px 0;
         .tp1 {
           color: #b71ed7;
         }
-        .author {
-          color: #ddd;
-        }
+        // .author {
+        //   color: #999;
+        // }
       }
       .title {
         font-weight: 600;
@@ -173,10 +171,10 @@ export default {
       }
     }
   }
-  .el-card:hover {
-    .el-button {
-      display: inline-block !important;
-    }
-  }
+  // .el-card:hover {
+  //   .el-button {
+  //     display: inline-block !important;
+  //   }
+  // }
 }
 </style>

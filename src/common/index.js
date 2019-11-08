@@ -1,4 +1,9 @@
-import { Message } from '_element-ui@2.12.0@element-ui'
+/** 
+ * element组件按需引入
+*/
+
+
+import { Message } from 'element-ui';
 
 export let LZCMessage = (msg, type) => {
   Message({

@@ -70,7 +70,7 @@ export default {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-image: url('https://user-gold-cdn.xitu.io/2019/8/31/16ce610b3ea04c7a?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1');
+      background-image: url('../../assets/image/tx.png');
     }
     .hd2 {
       height: 40px;
