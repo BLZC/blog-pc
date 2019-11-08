@@ -2,10 +2,11 @@
   <div class="home">
     <div class="main">
       <el-row>
-        <el-col :span="16">
+        <el-col :span="16" :xs="24">
           <home-left></home-left>
         </el-col>
         <el-col :span="7"
+                class="hidden-xs-only"
                 :offset="1">
           <home-right></home-right>
         </el-col>

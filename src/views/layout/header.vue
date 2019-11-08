@@ -5,40 +5,67 @@
     <div class="list_item">
       <el-row>
         <el-col :span="2"
-                class="item">
+                class="item hidden-xs-only">
           <img @click="jump(3)"
                src="https://b-gold-cdn.xitu.io/v3/static/img/logo.a7995ad.svg" />
         </el-col>
-        <el-col :span="11"
-                :offset="1">
-          <el-menu class="el-menu-demo"
-                   active-text-color="#007fff"
-                   mode="horizontal">
-            <el-menu-item index="1"
-                          @click="jump(4,1)">JS深究</el-menu-item>
-            <el-menu-item index="2"
-                          @click="jump(4,2)">再探CSS</el-menu-item>
-            <el-menu-item index="3"
-                          @click="jump(4,3)">框架踩坑</el-menu-item>
-            <el-menu-item index="4"
-                          @click="jump(4,4)">深入源码</el-menu-item>
-            <el-submenu index="5">
-              <template slot="title">个人博客</template>
-              <el-menu-item index="5-1">
-                <span @click="jump(1)">博客园</span></el-menu-item>
-              <el-menu-item index="5-2">
-                <span @click="jump(2)">github</span></el-menu-item>
-            </el-submenu>
-          </el-menu>
+        <el-col :span="1"
+                :xs="4"
+                class="item hidden-sm-and-up">
+          <img class="img" 
+              @click="jump(3)"
+              src="https://b-gold-cdn.xitu.io/v3/static/img/simplify-logo.3e3c253.svg"/>
         </el-col>
-        <el-col :span="4">
+        <el-col :span="4"
+                class="hidden-sm-and-up">
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              首页<i class="el-icon-caret-bottom el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>沸点</el-dropdown-item>
+              <el-dropdown-item>话题</el-dropdown-item>
+              <el-dropdown-item>小册</el-dropdown-item>
+              <el-dropdown-item>活动</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </el-col>
+          <el-col :span="11"
+                  class="hidden-xs-only"
+                  :offset="1">
+            <el-menu class="el-menu-demo"
+                    active-text-color="#007fff"
+                    mode="horizontal">
+              <el-menu-item index="1"
+                            @click="jump(4,1)">JS深究</el-menu-item>
+              <el-menu-item index="2"
+                            @click="jump(4,2)">再探CSS</el-menu-item>
+              <el-menu-item index="3"
+                            @click="jump(4,3)">框架踩坑</el-menu-item>
+              <el-menu-item index="4"
+                            @click="jump(4,4)">深入源码</el-menu-item>
+              <el-submenu index="5">
+                <template slot="title">个人博客</template>
+                <el-menu-item index="5-1">
+                  <span @click="jump(1)">博客园</span></el-menu-item>
+                <el-menu-item index="5-2">
+                  <span @click="jump(2)">github</span></el-menu-item>
+              </el-submenu>
+            </el-menu>
+          </el-col>
+        <el-col :span="4" :xs="8" class="my-input">
           <el-input placeholder="请输入内容"
-                    class="head_input"
+                    class="head_input hidden-xs-only"
                     size="medium"
                     prefix-icon="el-icon-search">
           </el-input>
+          <el-input placeholder="请输入内容"
+                    size="small"
+                    class="hidden-sm-and-up"
+                    prefix-icon="el-icon-search">
+          </el-input>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="3" class="hidden-xs-only">
           <el-button type="primary"
                      class="head_input"
                      icon="el-icon-edit"
@@ -47,6 +74,7 @@
         </el-col>
         <template v-if="islogin">
           <el-col :span="1"
+                  :xs="3"
                   class="message">
             <el-badge :value="12"
                       class="item">
@@ -54,14 +82,16 @@
             </el-badge>
           </el-col>
           <el-col :span="2"
+                  :xs="3"
                   class="information">
             <el-dropdown size="small"
                          @command="handleCommand"
                          :hide-timeout="hideTimeout"
+                         hide-on-click
                          placement="bottom">
               <span class="el-dropdown-link">
                 <img class="touxiang"
-                     src="https://user-gold-cdn.xitu.io/2019/8/14/16c8e087eb9bcf40?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1"
+                     src="../../assets/image/tx.png"
                      alt="头像">
                 <!-- <i class="iconfont iconxiugaitouxiang"></i> -->
               </span>
@@ -73,8 +103,8 @@
           </el-col>
         </template>
         <template v-else>
-          <el-col :span="
-                                  3">
+          <el-col :span="3"
+                  :xs="7">
             <div class="lzc-flex lgcon">
               <div class="lgin"
                    @click="login">登录&nbsp;&nbsp;|</div>
@@ -97,7 +127,7 @@ export default {
       //登录--lgshow  注册--rgshow
       dialog: { lgshow: false, rgshow: false },
       //下拉菜单延时
-      hideTimeout: 1000
+      hideTimeout: 500
     }
   },
   computed: {
@@ -262,5 +292,34 @@ export default {
       }
     }
   }
+}
+
+@media (max-width: 768px) {
+  .img {
+    height: 33px !important;
+    margin-top: 13px !important;
+  }
+  .el-dropdown {
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    color: #007fff;
+  }
+  .my-input {
+    margin-left: 8px;
+    margin-top: 14px;
+      .el-input__inner {
+        background: #fafafa !important;
+      }
+  }
+  .touxiang {
+  width: 31px !important;
+  height: 31px !important;
+  margin-top: 16px !important;
+}
+.lgcon {
+  font-size: 16px !important;
+  padding-left: 10px !important;
+}
 }
 </style>

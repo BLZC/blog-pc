@@ -5,6 +5,7 @@
              center
              destroy-on-close
              :close-on-click-modal='false'
+             class="login-phone"
              :visible.sync="dialog.lgshow">
     <el-form :model="form">
       <el-form-item required>
@@ -146,6 +147,13 @@ export default {
     height: 30px;
     border-radius: 50%;
     background-color: #f4f8fb;
+  }
+}
+@media (max-width: 768px) {
+  .login-phone {
+    .el-dialog {
+      width: 80% !important;
+    }
   }
 }
 </style>

@@ -3,10 +3,10 @@
     <edit-information :dialog="dialog"
                       :data="data"></edit-information>
     <el-row>
-      <el-col :span="3">
+      <el-col :span="3" class="hidden-xs-only">
         <div class="hd1"></div>
       </el-col>
-      <el-col :span="10">
+      <el-col :span="10" :xs="24">
         <div><span class="author">作者</span>&nbsp;
           <img src="https://b-gold-cdn.xitu.io/v3/static/img/lv-3.e108c68.svg" />
         </div>
@@ -16,6 +16,7 @@
         </div>
       </el-col>
       <el-col :span="10"
+              :xs="24"
               class="hd2">
         <div class="fx lzc-flex">
           <div v-for="item in icons"
@@ -26,6 +27,7 @@
         </div>
         <div>
           <el-button type="primary"
+                     class="hidden-xs-only"
                      @click="editShow"
                      plain>编辑个人资料</el-button>
         </div>
@@ -89,7 +91,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .about-left-top {
-  height: 150px;
   background-color: #fff;
   padding: 30px 20px;
   text-align: left;
@@ -172,6 +173,15 @@ export default {
         }
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .about-left-top {
+    text-align: center;
+  }
+  .fx {
+    justify-content: center !important;
   }
 }
 </style>

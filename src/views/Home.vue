@@ -38,4 +38,18 @@ export default {
     }
   }
 }
+@media (max-width: 768px) {
+  .home {
+  height: 100vh;
+  width: 100%;
+  .main {
+    width: 100%;
+    margin: 0 auto;
+    .top_block {
+      width: 100%;
+      height: 80px;
+    }
+  }
+}
+}
 </style>

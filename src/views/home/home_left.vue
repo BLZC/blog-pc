@@ -14,7 +14,7 @@
              shadow="none">
       <div slot="header"
            class="clearfix">
-        <div class="top"> <span class="tp1">专栏</span>&nbsp;&nbsp;{{item.author}}&nbsp;&nbsp;&nbsp;{{item.time}}</div>
+        <div class="top"> <span class="tp1">专栏</span>&nbsp;&nbsp;<span class="author">{{item.author}}&nbsp;&nbsp;&nbsp;{{item.time}}</span></div>
         <span @click="Jumpdetail(item.id)"
               class="title">{{item.title}}</span>
         <el-button style="float: right; padding: 3px 0; display:none;"
@@ -142,11 +142,15 @@ export default {
         color: #666;
         padding: 0 0 10px 0;
         .tp1 {
-          color: #007fff;
+          color: #b71ed7;
+        }
+        .author {
+          color: #ddd;
         }
       }
       .title {
         font-weight: 600;
+        font-size: 14px;
       }
     }
     .el-card__body {

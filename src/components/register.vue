@@ -3,6 +3,7 @@
              append-to-body
              width="25%"
              center
+             class="login-phone"
              destroy-on-close
              :close-on-click-modal='false'
              :visible.sync="dialog.rgshow">
