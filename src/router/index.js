@@ -42,6 +42,11 @@ export default new Router({
           name: 'message',
           component: () => import('../views/message')
         },
+        {
+          path: '/search',
+          name: 'search',
+          component: () => import('../views/search')
+        },
         //商城模块
         ...shop
       ]

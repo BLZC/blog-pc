@@ -57,6 +57,8 @@
           <el-input placeholder="请输入内容"
                     class="head_input hidden-xs-only"
                     size="medium"
+                    @keyup.enter.native="Search"
+                    v-model="inputText"
                     prefix-icon="el-icon-search">
           </el-input>
           <el-input placeholder="请输入内容"
@@ -128,7 +130,8 @@ export default {
       //登录--lgshow  注册--rgshow
       dialog: { lgshow: false, rgshow: false },
       //下拉菜单延时
-      hideTimeout: 500
+      hideTimeout: 500,
+      inputText: ''  //搜索框内容
     }
   },
   computed: {
@@ -186,6 +189,10 @@ export default {
       } else {
         this.$LZCMessage('请先登录', 'error')
       }
+    },
+    // 内容搜索
+    Search() {
+      this.linkTo('/search');
     },
     // 路由跳转
     linkTo(url){
