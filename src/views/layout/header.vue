@@ -63,6 +63,8 @@
           </el-input>
           <el-input placeholder="请输入内容"
                     size="small"
+                    @keyup.enter.native="Search"
+                    v-model="inputText"
                     class="hidden-sm-and-up"
                     prefix-icon="el-icon-search">
           </el-input>

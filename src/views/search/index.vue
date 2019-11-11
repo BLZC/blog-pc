@@ -9,5 +9,10 @@
         background: #fff;
         min-height: 500px;
     }
-    
+    @media (max-width: 768px) {
+        .search {
+            width: 100%;
+            min-height: 200px;
+        }
+    }
 </style>
