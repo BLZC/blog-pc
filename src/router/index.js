@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import shop from './module/shop'
+
 Vue.use(Router)
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -28,33 +28,11 @@ export default new Router({
           component: () => import('../views/content/content.vue')
         },
         {
-          path: '/about',
-          name: 'about',
-          component: () => import('../views/about/index.vue')
-        },
-        {
-          path: '/editsuccess',
-          name: 'editsuccess',
-          component: () => import('../views/edit/editsuccess.vue')
-        },
-        {
-          path: '/message',
-          name: 'message',
-          component: () => import('../views/message')
-        },
-        {
           path: '/search',
           name: 'search',
           component: () => import('../views/search')
-        },
-        //商城模块
-        ...shop
+        }
       ]
-    },
-    {
-      path: '/edit',
-      name: 'edit',
-      component: () => import('../views/edit/edit')
     }
   ]
 })

@@ -5,11 +5,13 @@
       <div class="top_block"></div>
       <router-view></router-view>
     </div>
+    <!-- <Foot></Foot> -->
   </div>
 </template>
 
 <script>
 import Pead from './layout/header'
+// import Foot from './layout/footer'
 export default {
   name: 'home',
   data () {
@@ -18,7 +20,8 @@ export default {
     };
   },
   components: {
-    Pead
+    Pead,
+    // Foot
   },
   methods: {
 
@@ -27,10 +30,10 @@ export default {
 </script>
 <style scoped lang="scss">
 .home {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   .main {
-    width: 1200px;
+    width: 1000px;
     margin: 0 auto;
     .top_block {
       width: 100%;

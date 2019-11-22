@@ -1,6 +1,4 @@
-// const path = require('path')
-// const webpack = require('webpack')
-// const httpType = ''
+// const proxyUrl = 'http://49.235.8.149:9001' // 代理地址设置
 const proxyUrl = 'http://localhost:9001' // 代理地址设置
 module.exports = {
   //   assetsDir: 'static',
@@ -12,10 +10,7 @@ module.exports = {
     proxy: {
       '/api': {
         target: proxyUrl,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api/': ''
-        }
+        changeOrigin: true
       }
     }
   }
