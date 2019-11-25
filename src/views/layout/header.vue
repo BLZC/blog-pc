@@ -30,6 +30,7 @@
           <el-col :span="14"
                   class="hidden-xs-only">
             <el-menu class="el-menu-demo"
+                    :default-active="activeIndex"
                     active-text-color="#007fff"
                     mode="horizontal">
               <el-menu-item index="1"
@@ -83,6 +84,7 @@ export default {
     return {
       //下拉菜单延时
       hideTimeout: 500,
+      activeIndex: '1',
       inputText: ''  //搜索框内容
     }
   },

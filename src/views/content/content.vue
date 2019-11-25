@@ -7,7 +7,7 @@
             <el-col :span="21"
                     :xs="19"
                     class="hd2">
-              <div class="hd4">2019年9月11日&nbsp;阅读量1982</div>
+              <div class="hd4">{{time}}</div>
             </el-col>
           </el-row>
         </el-col>
@@ -41,6 +41,7 @@ export default {
       title: '', /* 文章题目 */
       input: '',  /* 文章内容 */
       isattention: false, /* 关注 */
+      time: '',  //时间
       comments: 1,
       mycomment: ''
     }
@@ -61,6 +62,7 @@ export default {
       this.$get('/article/'+_id).then(res => {
         this.title = res.data.title
         this.input = res.data.content
+        this.time = res.data.time
       })
     },
     //点关注
