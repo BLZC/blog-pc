@@ -1,6 +1,6 @@
 ## 个人博客  线上地址： <a href="http://49.235.8.149">49.235.8.149</a>
-## 后端源码(koa+node)： <a href="https://github.com/BLZC/blog-server">后端代码</a> 
-## 管理系统代码： <a href="https://github.com/BLZC/blog-manage">后端代码</a> 
+## <a href="https://github.com/BLZC/blog-server">后端代码地址</a> 
+## <a href="https://github.com/BLZC/blog-manage">管理系统源码地址</a> 
 
 ## Project setup
 
