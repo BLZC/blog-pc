@@ -96,25 +96,6 @@ export default {
         }
       }
     }
-    .box-card-bottom {
-        padding: 0 20px;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      .minitem {
-        cursor: pointer;
-        font-size: 13px;
-        line-height: 22px;
-        text-align: center;
-        width: 60px;
-        height: 30px;
-        padding: 3px;
-        color: #ddd;
-        .lickIcon {
-          color: red;
-        }
-      }
-    }
   }
 }
 </style>

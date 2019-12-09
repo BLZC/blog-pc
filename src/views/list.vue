@@ -1,7 +1,5 @@
 <template>
-  <div class="home"
-       v-infinite-scroll="load"
-       style="overflow:auto">
+  <div class="home">
     <div class="box-card"
           v-for="item in articles"
           :key="item.id">
@@ -15,12 +13,6 @@
             </el-row>
           </div>
       </div>
-      <!-- <div class="box-card-bottom">
-          <div class="minitem">
-              <span class="lickIcon" @click="addLike"><i class="iconfont iconxihuan1"></i></span> &nbsp;
-              {{likeNum || 0}}
-          </div>
-      </div> -->
       <el-divider></el-divider>
     </div>
   </div>
@@ -29,7 +21,6 @@
 export default {
   data () {
     return {
-      likeNum: 0,
       articles: []
     }
   },
@@ -40,9 +31,6 @@ export default {
     '$route': 'getallarticles'
   },
   methods: {
-    load () {
-
-    },
     //获取文章列表
     getallarticles () {
       let _id = this.$route.query.id || 0
@@ -68,11 +56,7 @@ export default {
           }
         }
       )
-    },
-    // 点赞
-    // addLike(){
-    //   this.likeNum++;
-    // }
+    }
   }
 }
 </script>
@@ -102,25 +86,6 @@ export default {
             cursor: pointer;
             font-weight: 600;
             font-size: 18px;
-        }
-      }
-    }
-    .box-card-bottom {
-        padding: 0 20px;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      .minitem {
-        cursor: pointer;
-        font-size: 13px;
-        line-height: 22px;
-        text-align: center;
-        width: 60px;
-        height: 30px;
-        padding: 3px;
-        color: #ddd;
-        .lickIcon {
-          color: red;
         }
       }
     }

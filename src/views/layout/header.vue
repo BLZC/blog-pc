@@ -3,46 +3,20 @@
     <div class="list_item">
       <el-row>
         <el-col :span="2"
-                class="item hidden-xs-only">
-          <img src="../../../public/images/logo1.gif" />
+                class="item">
+          <img src="http://49.235.8.149:9001/upload/logo.jfif" />
         </el-col>
-        <el-col :span="1"
-                :xs="4"
-                class="item hidden-sm-and-up">
-          <img class="img" 
-              @click="jump(3)"
-              src="https://b-gold-cdn.xitu.io/v3/static/img/simplify-logo.3e3c253.svg"/>
-        </el-col>
-        <el-col :span="4"
-                class="hidden-sm-and-up">
-          <el-dropdown>
-            <span class="el-dropdown-link">
-              首页<i class="el-icon-caret-bottom el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>每日一记</el-dropdown-item>
-              <el-dropdown-item>读书笔记</el-dropdown-item>
-              <el-dropdown-item>坑点记录</el-dropdown-item>
-              <el-dropdown-item>热点新闻</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </el-col>
-          <el-col :span="14"
-                  class="hidden-xs-only">
-            <el-menu class="el-menu-demo"
+          <el-col :span="14">
+            <el-menu class="el-menu"
                     :default-active="activeIndex"
-                    active-text-color="#007fff"
+                    background-color="#67C23A"
+                    active-text-color="#0BF8D8"
+                    text-color="#fff"
                     mode="horizontal">
-              <el-menu-item index="1"
-                            @click="jump(4,0)">首页</el-menu-item>
-              <el-menu-item index="2"
-                            @click="jump(4,1)">每日一记</el-menu-item>
-              <el-menu-item index="3"
-                            @click="jump(4,2)">读书笔记</el-menu-item>
-              <el-menu-item index="4"
-                            @click="jump(4,3)">坑点记录</el-menu-item>
-              <el-menu-item index="5"
-                            @click="jump(4,4)">热点新闻</el-menu-item>
+              <el-menu-item v-for="item in menuList"
+                            :key="item.id"
+                            :index="item.index.toString()"
+                            @click="jump(4,item.label)">{{item.name}}</el-menu-item>
               <el-submenu index="6">
                 <template slot="title">外链</template>
                 <el-menu-item index="6-1">
@@ -55,26 +29,17 @@
         <el-col :span="5" :xs="8" class="my-input">
           <el-input placeholder="请输入内容"
                     clearable
-                    class="head_input hidden-xs-only"
+                    class="head_input"
                     size="medium"
                     @keyup.enter.native="Search"
                     v-model="inputText"
                     prefix-icon="el-icon-search">
           </el-input>
-          <el-input placeholder="请输入内容"
-                    size="small"
-                    @keyup.enter.native="Search"
-                    v-model="inputText"
-                    class="hidden-sm-and-up"
-                    prefix-icon="el-icon-search">
-          </el-input>
         </el-col>
         <el-col :span="2" class="search-button">
-          <el-button type="primary hidden-xs-only" size="medium" icon="el-icon-search" @click="Search">搜索</el-button>
-          <el-button type="primary hidden-sm-and-up" size="small" icon="el-icon-search" @click="Search">搜索</el-button>
+          <el-button type="primary" size="medium" icon="el-icon-search" @click="Search">搜索</el-button>
         </el-col>
       </el-row>
-
     </div>
   </div>
 </template>
@@ -82,13 +47,22 @@
 export default {
   data () {
     return {
+      menuList: [], //菜单
       //下拉菜单延时
       hideTimeout: 500,
       activeIndex: '1',
       inputText: ''  //搜索框内容
     }
   },
+  created () {
+    this.getMenuList();
+  },
   methods: {
+    getMenuList () {
+        this.$get('/label').then(res =>{
+          this.menuList = res.data;
+        })
+    },
     //我的博客--页面跳转
     jump (value, index) {
       switch (value) {
@@ -126,20 +100,15 @@ export default {
   min-width: 100px;
   text-align: center;
 }
-.el-dropdown-menu {
-  .el-dropdown-menu__item {
-    font-size: 16px !important;
-    padding: 5px 30px;
-    .iconfont {
-      margin-right: 10px;
-    }
-  }
+.el-menu--horizontal>.el-submenu .el-submenu__icon-arrow {
+  color: #fff;
 }
 .header {
   position: fixed;
   width: 100%;
   padding: 0 calc(50% - 500px);
-  background-color: #fff;
+  background-color: #67C23A;
+  color: #fff;
   z-index: 999;
   .list_item {
     width: 100%;
@@ -155,7 +124,7 @@ export default {
         margin-top: 5px;
       }
     }
-    .el-menu-demo {
+    .el-menu {
       height: 60px;
     }
     .el-menu.el-menu--horizontal {
@@ -164,7 +133,6 @@ export default {
       .el-submenu__title {
         text-align: center;
         font-size: 16px;
-        color: #333;
       }
     }
     .head_input {

@@ -1,37 +1,19 @@
-## 个人博客  线上地址： <a href="http://49.235.8.149">49.235.8.149</a>
+## 个人博客  线上地址： <a href="http://106.75.63.105">ItHome</a>
 ## <a href="https://github.com/BLZC/blog-server">后端代码地址</a> 
 ## <a href="https://github.com/BLZC/blog-manage">管理系统源码地址</a> 
 
 ## Project setup
 
+#### 安装依赖
 ```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-
-```
-yarn run serve
+yarn
 ```
 
-### Compiles and minifies for production
-
+#### 启动项目
+```
+yarn run dev
+```
+#### 打包
 ```
 yarn run build
 ```
-
-### Run your tests
-
-```
-yarn run test
-```
-
-### Lints and fixes files
-
-```
-yarn run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).

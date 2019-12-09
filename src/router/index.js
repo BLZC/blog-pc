@@ -20,17 +20,17 @@ export default new Router({
         {
           path: '/index',
           name: 'index',
-          component: () => import('../views/home/home.vue')
+          component: () => import('../views/list.vue')
         },
         {
           path: '/content',
           name: 'content',
-          component: () => import('../views/content/content.vue')
+          component: () => import('../views/content.vue')
         },
         {
           path: '/search',
           name: 'search',
-          component: () => import('../views/search')
+          component: () => import('../views/search.vue')
         }
       ]
     }

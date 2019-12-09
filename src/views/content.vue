@@ -1,24 +1,9 @@
-<template name="component-name">
-  <div class="contentmain">
-    <div class="contentmain_head">
-      <el-row>
-        <el-col :span="18">
-          <el-row>
-            <el-col :span="21"
-                    :xs="19"
-                    class="hd2">
-              <div class="hd4">{{time}}</div>
-            </el-col>
-          </el-row>
-        </el-col>
-      </el-row>
-    </div>
-    <div class="contentmain_main">
-      <span class="title">{{title}}</span>
+<template>
+  <div class="content">
+      <div class="title">{{title}}</div>
+      <div class="hd4">{{time}}</div>
       <div class="markdown_content"
            v-html="compiledMarkdown"></div>
-    </div>
-
   </div>
 </template>
 <script>
@@ -39,16 +24,13 @@ export default {
   data () {
     return {
       title: '', /* 文章题目 */
-      input: '',  /* 文章内容 */
-      isattention: false, /* 关注 */
-      time: '',  //时间
-      comments: 1,
-      mycomment: ''
+      content: '',  /* 文章内容 */
+      time: '' //时间
     }
   },
   computed: {
     compiledMarkdown () {
-      return marked(this.input, { sanitize: true })
+      return marked(this.content)
     }
   },
   mounted () {
@@ -57,54 +39,28 @@ export default {
   methods: {
     //获取文章信息
     getarticleDetail () {
-      // let _id = this.$store.state.content.contentId
       let _id = this.$route.query.contentId
       this.$get('/article/'+_id).then(res => {
         this.title = res.data.title
-        this.input = res.data.content
+        this.content = res.data.content
         this.time = res.data.time
       })
-    },
-    //点关注
-    Attention () {
-      this.isattention = !this.isattention
     }
   }
 }
 </script>
 <style lang="scss" >
-.contentmain {
-  background-color: #fff;
-  .hd1 {
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 20px;
-  }
-  .contentmain_head {
-    height: 40px;
-    padding: 20px;
-    .hd2 {
-      cursor: pointer;
-      text-align: left;
-      font-size: 15px;
-      font-weight: 550;
-      .hd4 {
-        cursor: text;
-        font-size: 14px;
-        color: #999;
-        font-weight: 500;
-      }
-    }
-  }
-  .contentmain_main {
+  .content {
     text-align: left;
     padding: 20px 20px 60px 20px;
     line-height: 40px;
     .title {
       font-size: 22px;
       font-weight: 550;
+    }
+    .hd4 {
+      font-size: 14px;
+      color: #999;
     }
     .markdown_content {
       h1 {
@@ -129,5 +85,4 @@ export default {
       }
     }
   }
-}
 </style>
