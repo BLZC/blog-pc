@@ -1,10 +1,10 @@
 <template>
   <div class="header">
     <div class="list_item">
-      <el-row>
+      <el-row class="headerPc">
         <el-col :span="2"
                 class="item">
-          <img src="http://49.235.8.149:9001/upload/logo.jfif" />
+          <img class="img" src="http://49.235.8.149:9001/upload/logo.jfif" />
         </el-col>
           <el-col :span="14">
             <el-menu class="el-menu"
@@ -26,7 +26,7 @@
               </el-submenu>
             </el-menu>
           </el-col>
-        <el-col :span="5" :xs="8" class="my-input">
+        <el-col :span="5" class="my-input">
           <el-input placeholder="请输入内容"
                     clearable
                     class="head_input"
@@ -40,6 +40,42 @@
           <el-button type="primary" size="medium" icon="el-icon-search" @click="Search">搜索</el-button>
         </el-col>
       </el-row>
+      <div class="headerPhone">
+        <el-row>
+            <el-col :span="2"
+                    :offset="1"
+                    class="item">
+            <img class="img" src="http://49.235.8.149:9001/upload/logo.jfif" />
+          </el-col>
+          <el-col :span="6" :offset="1">
+            <el-dropdown @command="handleJump">
+              <span class="el-dropdown-link">
+                目录<i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item v-for="item in menuList" :key="item.id" :command="item.label">
+                  {{item.name}}
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </el-col>
+            <el-col :span="8" :offset="1" class="my-input">
+            <el-input placeholder="请输入内容"
+                      clearable
+                      class="head_input"
+                      size="small"
+                      @keyup.enter.native="Search"
+                      v-model="inputText"
+                      prefix-icon="el-icon-search">
+            </el-input>
+          </el-col>
+          <el-col :span="2" class="search-button">
+            <el-button type="primary" size="small" icon="el-icon-search" @click="Search">搜索</el-button>
+          </el-col>
+        </el-row>
+        <div class="menulist"></div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -80,6 +116,9 @@ export default {
           break;
       }
     },
+    handleJump (index) {
+      this.linkTo('/index', {id: index})
+    },
     // 内容搜索
     Search() {
       this.linkTo('/search', {searchText: this.inputText});
@@ -103,6 +142,7 @@ export default {
 .el-menu--horizontal>.el-submenu .el-submenu__icon-arrow {
   color: #fff;
 }
+@media (min-width: 768px) {
 .header {
   position: fixed;
   width: 100%;
@@ -111,6 +151,9 @@ export default {
   color: #fff;
   z-index: 999;
   .list_item {
+    .headerPhone {
+      display: none;
+    }
     width: 100%;
     height: 60px;
     .item {
@@ -145,25 +188,41 @@ export default {
       padding: 10px;
     }
   }
+} 
 }
-
 @media (max-width: 768px) {
-  .img {
-    height: 33px !important;
-    margin-top: 13px !important;
-  }
-  .el-dropdown {
-    height: 60px;
-    line-height: 60px;
-    font-size: 16px;
-    color: #007fff;
-  }
-  .my-input {
-    margin-left: 8px;
-    margin-top: 14px;
-      .el-input__inner {
-        background: #fafafa !important;
+  .header {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    background-color: #67C23A;
+    color: #fff;
+    z-index: 999;
+    .list_item {
+      .headerPc {
+        display: none;
       }
+      .headerPhone {
+        display: block;
+      }
+      .img {
+        height: 33px !important;
+        margin-top: 8.5px !important;
+        border-radius: 5px;
+      }
+      .el-dropdown-link {
+        display: inline-block;
+        font-size: 16px;
+        color: #fff;
+        padding-top: 14.5px;
+      }
+      .head_input {
+        margin-top: 9px;
+      }
+      .search-button {
+        margin-top: 8.5px;
+      }
+    }
   }
 }
 </style>

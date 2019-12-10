@@ -6,10 +6,10 @@
       <div class="box-card-header">
           <div class="titleContainer">
             <el-row>
-              <el-col :span="20"><span @click="Jumpdetail(item.id)"
-                  class="title">{{item.title}}</span>
+              <el-col :span="19"><span @click="Jumpdetail(item.id)">
+                <span class="title">{{item.title}}</span></span>
               </el-col>
-              <el-col :span="4"><span class="time">{{item.time}}</span></el-col>
+              <el-col :span="4" :offset="1"><span class="time">{{item.time}}</span></el-col>
             </el-row>
           </div>
       </div>
@@ -85,7 +85,10 @@ export default {
         .title {
             cursor: pointer;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 16px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            // white-space: nowrap;
         }
       }
     }
