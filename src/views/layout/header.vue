@@ -87,16 +87,16 @@ export default {
       //下拉菜单延时
       hideTimeout: 500,
       activeIndex: '1',
-      inputText: ''  //搜索框内容
+      inputText: '', //搜索框内容
     }
   },
   created () {
-    this.getMenuList();
+    this.getMenuList()
   },
   methods: {
     getMenuList () {
         this.$get('/label').then(res =>{
-          this.menuList = res.data;
+          this.menuList = res.data
         })
     },
     //我的博客--页面跳转
@@ -104,16 +104,16 @@ export default {
       switch (value) {
         case 1:
           //跳转到我的博客
-          window.open("https://www.cnblogs.com/lzcblog/", '_blank');
-          break;
+          window.open("https://www.cnblogs.com/lzcblog/", '_blank')
+          break
         case 2:
           //跳转到我的github
-          window.open("https://github.com/BLZC", '_blank');
-          break;
+          window.open("https://github.com/BLZC", '_blank')
+          break
         case 4:
           //跳转到具体文章分类页面
           this.linkTo('/index', {id: index})
-          break;
+          break
       }
     },
     handleJump (index) {
@@ -121,7 +121,7 @@ export default {
     },
     // 内容搜索
     Search() {
-      this.linkTo('/search', {searchText: this.inputText});
+      this.linkTo('/search', {searchText: this.inputText})
     },
     // 路由跳转
     linkTo(url, query){

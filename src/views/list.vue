@@ -42,7 +42,7 @@ export default {
               element.time = element.time.split("T")[0]
             }
           })
-          this.articles = result;
+          this.articles = result
         }
       })
     },

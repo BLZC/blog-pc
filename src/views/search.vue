@@ -41,9 +41,9 @@ export default {
         // 获取查询结果
         getData(){
             if(this.$route.query.searchText){
-                let title = this.$route.query.searchText;
+                let title = this.$route.query.searchText
                 this.$get('/getArticleByTitle/'+title).then(res => {
-                    this.articles = res.data;
+                    this.articles = res.data
                 })
             }
         },
