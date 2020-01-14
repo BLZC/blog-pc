@@ -6,10 +6,14 @@
       <div class="box-card-header">
           <div class="titleContainer">
             <el-row>
-              <el-col :span="19"><span @click="Jumpdetail(item.id)">
+              <el-col :span="13"><span @click="Jumpdetail(item.id)">
                 <span class="title">{{item.title}}</span></span>
               </el-col>
-              <el-col :span="4" :offset="1"><span class="time">{{item.time}}</span></el-col>
+              <el-col :span="10" :offset="1">
+                <span class="time">发布时间: {{item.time}}</span>
+                &nbsp;&nbsp;
+                <span class="time">最后修改时间: {{item.lastEditTime ? item.lastEditTime : '暂无修改'}}</span>
+              </el-col>
             </el-row>
           </div>
       </div>
